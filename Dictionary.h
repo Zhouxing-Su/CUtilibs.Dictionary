@@ -63,7 +63,6 @@ enum {
 
 typedef int String_SizeType;
 typedef unsigned char *Bytes;
-// OPTIMIZE[szx][2]: make it a struct and record string length to remove padding space.
 typedef struct String {
     Bytes bytes;
     String_SizeType size;
