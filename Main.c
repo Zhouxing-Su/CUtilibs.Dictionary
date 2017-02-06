@@ -3,7 +3,7 @@
 
 #include "Dictionary.h"
 
-static int randInt() { return (rand() * rand()); }
+static unsigned int randInt() { return (rand() * rand()); }
 
 int main() {
     enum { DataSize = 8 };
