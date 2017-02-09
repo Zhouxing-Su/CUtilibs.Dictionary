@@ -3,7 +3,9 @@
 
 #include "Dictionary.h"
 
+
 static int randInt() { return (rand() * rand()); }
+static unsigned randUnsigned() { return (unsigned)(rand() * rand()); }
 
 int main() {
     enum { DataSize = 8 };
@@ -11,7 +13,7 @@ int main() {
 
     int i;
     int iteration = 10000;
-    int insertPos = randInt() % iteration;
+    int insertPos = randUnsigned() % iteration;
     int size;
     DataType data0[] = { randInt(), randInt(), randInt(), randInt() };
     DataType data[DataSize] = { randInt(), randInt(), randInt(), randInt(), randInt(), randInt(), randInt(), randInt() };
@@ -21,15 +23,15 @@ int main() {
 
     for (i = 0; i < iteration; ++i) {
         if (i == insertPos) { Dictionary_insert(dict, &str0); }
-        size = (randInt() % (DataSize - 1)) + 1;
-        data[randInt() % size] = randInt();
-        data[randInt() % size] = randInt();
+        size = (randUnsigned() % (DataSize - 1)) + 1;
+        data[randUnsigned() % size] = randInt();
+        data[randUnsigned() % size] = randInt();
         Dictionary_insert(dict, String_initi(&str, data, size, sizeof(DataType)));
     }
 
     printf("%d\n", Dictionary_find(dict, &str0));
-    data[randInt() % DataSize] = randInt();
-    data[randInt() % DataSize] = randInt();
+    data[randUnsigned() % DataSize] = randInt();
+    data[randUnsigned() % DataSize] = randInt();
     printf("%d\n", Dictionary_find(dict, String_init(&str0, data, sizeof(data))));
 
     Dictionary_delete(dict);

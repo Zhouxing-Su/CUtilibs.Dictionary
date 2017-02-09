@@ -1,6 +1,7 @@
 ////////////////////////////////
 /// usage : 1.	a dictionary implemented by trie (prefix tree).
-///         2.  it is very convenient to collaborate with an array and use the id as index.
+///         2.  it applies a naive implementation which leads to heavy memory consumption.
+///         3.  it is very convenient to collaborate with an array and use the id as index.
 /// 
 /// note  : 1.	it requires that each string to be inserted is unique, 
 ///             so that it is a bijection between str and id.
@@ -12,14 +13,15 @@
 ///         #include "Dictionary.h"
 ///
 ///         static int randInt() { return (rand() * rand()); }
-///
+///         static unsigned randUnsigned() { return (unsigned)(rand() * rand()); }
+///         
 ///         int main() {
 ///             enum { DataSize = 8 };
 ///             typedef int DataType;
 ///         
 ///             int i;
 ///             int iteration = 10000;
-///             int insertPos = randInt() % iteration;
+///             int insertPos = randUnsigned() % iteration;
 ///             int size;
 ///             DataType data0[] = { randInt(), randInt(), randInt(), randInt() };
 ///             DataType data[DataSize] = { randInt(), randInt(), randInt(), randInt(), randInt(), randInt(), randInt(), randInt() };
@@ -29,17 +31,17 @@
 ///         
 ///             for (i = 0; i < iteration; ++i) {
 ///                 if (i == insertPos) { Dictionary_insert(dict, &str0); }
-///                 size = (randInt() % (DataSize - 1)) + 1;
-///                 data[randInt() % size] = randInt();
-///                 data[randInt() % size] = randInt();
+///                 size = (randUnsigned() % (DataSize - 1)) + 1;
+///                 data[randUnsigned() % size] = randInt();
+///                 data[randUnsigned() % size] = randInt();
 ///                 Dictionary_insert(dict, String_initi(&str, data, size, sizeof(DataType)));
 ///             }
 ///         
 ///             printf("%d\n", Dictionary_find(dict, &str0));
-///             data[randInt() % DataSize] = randInt();
-///             data[randInt() % DataSize] = randInt();
+///             data[randUnsigned() % DataSize] = randInt();
+///             data[randUnsigned() % DataSize] = randInt();
 ///             printf("%d\n", Dictionary_find(dict, String_init(&str0, data, sizeof(data))));
-///
+///         
 ///             Dictionary_delete(dict);
 ///         
 ///             return 0;
@@ -49,7 +51,6 @@
 
 #ifndef SZX_CUTILIBS_DICTIONARY_H
 #define SZX_CUTILIBS_DICTIONARY_H
-
 
 
 enum {
